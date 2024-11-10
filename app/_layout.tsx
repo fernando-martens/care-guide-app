@@ -1,4 +1,4 @@
-import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Slot } from 'expo-router';
 import 'react-native-reanimated';
 
@@ -12,8 +12,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider 
-      // value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-      value={DefaultTheme}
+      value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
     >
       <SessionProvider>
         <Slot />

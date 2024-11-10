@@ -1,10 +1,12 @@
 import { createContext, useContext, useState } from "react";
 import * as SecureStore from 'expo-secure-store';
 import { useStorageState } from "@/hooks/useStorageState";
+import { router } from "expo-router";
 
 const KEY_LOGIN = "testKeySession"
 
 interface SessionProps{
+    isLoading: boolean,
     session?: { token: string };
     register: (email: string, password: string) => Promise<any>;
     signIn : (email: string, password: string) => Promise<any>;
@@ -12,6 +14,7 @@ interface SessionProps{
 }
 
 const SessionContext = createContext<SessionProps>({
+    isLoading: false,
     signIn: async (email: string, password: string) => {},
     register: async (email: string, password: string) => {},
     signOut: async () => {}
@@ -20,6 +23,7 @@ const SessionContext = createContext<SessionProps>({
 
 export const SessionProvider = ({ children }: any) => {
 
+    const [isLoading, setIsLoading] = useState(false)
     const [session, setSession] = useStorageState<SessionProps["session"]>(KEY_LOGIN);
 
     async function register(email: string, password: string){
@@ -27,16 +31,20 @@ export const SessionProvider = ({ children }: any) => {
     }
     
     async function signIn (email: string, password: string){
+        setIsLoading(false)
         setSession({ token: "Test" });
+        router.replace('/');
     }
     
     async function signOut(){
+        setIsLoading(false)
         setSession(undefined);    
     }
 
     return (
         <SessionContext.Provider 
             value={{
+                isLoading,
                 session,
                 register,
                 signIn ,
