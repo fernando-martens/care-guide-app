@@ -1,4 +1,8 @@
 import { createContext, useContext, useState } from "react";
+import * as SecureStore from 'expo-secure-store';
+import { useStorageState } from "@/hooks/useStorageState";
+
+const KEY_LOGIN = "testKeySession"
 
 interface SessionProps{
     session?: { token: string };
@@ -16,18 +20,18 @@ const SessionContext = createContext<SessionProps>({
 
 export const SessionProvider = ({ children }: any) => {
 
-    const [session, setSession] = useState<SessionProps["session"]>();
+    const [session, setSession] = useStorageState<SessionProps["session"]>(KEY_LOGIN);
 
     async function register(email: string, password: string){
 
     }
     
     async function signIn (email: string, password: string){
-        setSession({ token: "Test" })
+        setSession({ token: "Test" });
     }
     
     async function signOut(){
-        setSession(undefined)
+        setSession(undefined);    
     }
 
     return (
