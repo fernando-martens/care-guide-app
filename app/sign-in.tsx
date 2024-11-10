@@ -11,38 +11,37 @@ export default function SignIn() {
   const { signIn  } = useSession();
   
   return (
-  <Formik
-    initialValues={{ email: "", password: "" }}
-    onSubmit={values => signIn(values.email, values.password)}
-
-   >
-     {({ handleChange, handleBlur, handleSubmit, values }) => (
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <ThemedView style={styles.container}>
-          <ThemedTextInput
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            values={values}
-            name="email"
-            placeholder="Email"
-          />
-          <ThemedTextInput
-            handleChange={handleChange}
-            handleBlur={handleBlur}
-            values={values}
-            name="password"
-            placeholder="Password"
-          />
-          <ThemedButton
-            title="Sign In"
-            onPress={() => {
-              handleSubmit();   
-            }}
-          />
-        </ThemedView>
-      </TouchableWithoutFeedback>
-     )}
-   </Formik>
+    <Formik
+      initialValues={{ email: "", password: "" }}
+      onSubmit={values => signIn(values.email, values.password)}
+    >
+      {({ handleChange, handleBlur, handleSubmit, values }) => (
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <ThemedView style={styles.container}>
+            <ThemedTextInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              values={values}
+              name="email"
+              placeholder="Email"
+            />
+            <ThemedTextInput
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              values={values}
+              name="password"
+              placeholder="Password"
+            />
+            <ThemedButton
+              title="Sign In"
+              onPress={() => {
+                handleSubmit();   
+              }}
+            />
+          </ThemedView>
+        </TouchableWithoutFeedback>
+      )}
+    </Formik>
   );
 }
 
