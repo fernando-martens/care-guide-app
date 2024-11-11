@@ -11,12 +11,12 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider 
-      value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-    >
-      <SessionProvider>
+    <SessionProvider>
+      <ThemeProvider 
+        value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
+      >
         <Slot />
-      </SessionProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </SessionProvider>
   );
 }

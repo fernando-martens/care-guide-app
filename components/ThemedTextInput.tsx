@@ -9,15 +9,15 @@ export function ThemedTextInput(props: {
     placeholder: string
 }) {
     return (
-        <TextInput
-            onChangeText={props.handleChange(props.name)}
-            onBlur={props.handleBlur(props.name)}
-            value={props.values[props.name]}
-            placeholder={props.placeholder}
-            style={styles.inputText}
-            placeholderTextColor={"white"}
-            keyboardType="email-address"
-        />
+      <TextInput
+        onChangeText={props.handleChange(props.name)}
+        onBlur={props.handleBlur(props.name)}
+        value={props.values[props.name]}
+        placeholder={props.placeholder}
+        style={styles.inputText}
+        placeholderTextColor={"white"}
+        keyboardType="email-address"
+      />
     );
   }
   
